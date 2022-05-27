@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
+import { BannerPage } from './pages/BannerPage';
+import { BannersPage } from './pages/BannersPage';
+import { CategoriesPage } from './pages/CategoriesPage';
+import { CategoryPage } from './pages/CategoryPage';
+import { MainPage } from './pages/MainPage';
+
+axios.defaults.baseURL = "http://localhost:8080/api/"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="" element={<MainPage/>}/>
+      <Route path="banners" element={<BannersPage/>}/>
+        <Route path="banners/:bannerId" element={<BannerPage/>}/>
+      <Route path="categories" element={<CategoriesPage/>}/>
+        <Route path="categories/:categoryId" element={<CategoryPage/>}/>
+    </Routes>
   );
 }
 
